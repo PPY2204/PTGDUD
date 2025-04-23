@@ -1,0 +1,46 @@
+header{
+ display: flex;
+ justify-content: space-between;
+ height: 60px;
+ width: 100%;
+}
+
+.header__logo{
+    max-width:50%;
+    height: auto;
+}
+
+.btn_login{
+    position: absolute;
+    top: 18px;
+    left: 1281px;
+    height: 44px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Manrope;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #FFFFFFFF;
+    background: #F44B87FF;
+    opacity: 1;
+    border: none;
+    border-radius: 12px;
+    
+}
+/* Hover */
+.btn_login:hover {
+    color: #FFFFFFFF;
+    background: #F0105EFF;
+    }
+    /* Pressed */
+    .btn_login:hover:active {
+    color: #FFFFFFFF;
+    background: #D20D52FF;
+    }
+    /* Disabled */
+    .btn_login:disabled {
+    opacity: 0.4
+    }  
