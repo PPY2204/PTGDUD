@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import AddBookForm from './components/AddBookForm';
 import BookList from './components/BookList'
@@ -13,6 +13,26 @@ function App() {
   const filteredBooks = books
     .filter((book) => book.title.toLowerCase().includes(searchTerm.toLowerCase()))
     .filter((book) => !genreFilter || book.genre === genreFilter);
+
+  useEffect(() => {
+    console.log("Books trước khi lưu:", books);
+    try {
+      localStorage.setItem("books", JSON.stringify(books));
+      console.log("Lưu thành công!");
+    } catch (error) {
+      console.error("Lỗi khi lưu vào localStorage:", error);
+    }
+  }, [books]);
+
+  useEffect(() => {
+    try {
+      const storedBooks = JSON.parse(localStorage.getItem("books") || "[]");
+      console.log("Dữ liệu từ localStorage:", storedBooks);
+      setBooks(storedBooks);
+    } catch (error) {
+      console.error("Lỗi khi tải từ localStorage:", error);
+    }
+  }, []);
   return (
     <div className='p-4'>
       <AddBookForm onAdd={addBook} />
@@ -32,7 +52,9 @@ function App() {
           <option value="Tâm lý">Tâm lý</option>
         </select>
       </div>
-      <h2 className="text-lg font-semibold mb-2">Tổng số sách: {books.length}</h2>
+      <p className="text-sm text-gray-500">
+        Tổng trong state: {books.length} | Đang hiển thị sau lọc: {filteredBooks.length}
+      </p>
       <BookList books={filteredBooks} onDelete={deleteBook} />
     </div>
   )
