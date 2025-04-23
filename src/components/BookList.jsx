@@ -1,6 +1,5 @@
 import BookItem from "./BookItem";
 
-
 export default function BookList({ books, onDelete }) {
     return (
         <ul className="space-y-2">
