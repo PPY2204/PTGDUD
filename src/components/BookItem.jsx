@@ -1,4 +1,5 @@
 export default function BookItem({ book, onDelete }) {
+
     return (
         <li className="flex justify-between items-center border p-2 rounded">
             <div>
