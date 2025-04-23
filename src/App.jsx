@@ -8,10 +8,11 @@ function App() {
   const addBook = (book) => setBooks([...books, book]);
   const deleteBook = (id) => setBooks(books.filter((book) => book.id !== id));
   const [searchTerm, setSearchTerm] = useState("");
+  const [genreFilter, setGenreFilter] = useState("");
 
-  const filteredBooks = books.filter((book) =>
-    book.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredBooks = books
+    .filter((book) => book.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    .filter((book) => !genreFilter || book.genre === genreFilter);
   return (
     <>
       <AddBookForm onAdd={addBook} />
@@ -21,6 +22,14 @@ function App() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+      <select value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}>
+        <option value="">Tất cả</option>
+        <option value="Văn học">Văn học</option>
+        <option value="Khoa học">Khoa học</option>
+        <option value="Công nghệ">Công nghệ</option>
+        <option value="Tâm lý">Tâm lý</option>
+      </select>
+
       <BookList books={filteredBooks} onDelete={deleteBook} />
     </>
   )
