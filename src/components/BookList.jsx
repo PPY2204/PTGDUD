@@ -4,7 +4,7 @@ const books = [
     { id: 2, title: "Sapiens", author: "Yuval Harari", genre: "Khoa học", year: 2011 },
 ];
 
-export default function BookList({ onDelete }) {
+export default function BookList({ books, onDelete }) {
     return (
         <div>
             <h2>Danh sách sách</h2>
